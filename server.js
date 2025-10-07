@@ -1,57 +1,51 @@
-const express = require("express");
+"use strict";
+
+const http = require("http");
 const fs = require("fs");
 const path = require("path");
+const { URL } = require("url");
 
-const app = express();
-const PORT = 3000;
-const DATA_FILE = path.join(__dirname, "data", "todos.json");
+const PORT = process.env.PORT || 4004;
+const ROOT = path.join(__dirname, "public");
 
-app.use(express.json());
-app.use(express.static("public"));
+// MIME types by extension
+const MIME = {
+  ".html": "text/html; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+  ".js": "text/javascript; charset=utf-8",
+  ".ico": "image/x-icon",
+};
 
-// Load & Save helpers
-function loadTodos() {
+// Only serve these four files
+const ALLOWED = new Set(["/favicon.ico", "/index.html", "/style.css", "/logic.js"]);
+
+function sendFile(res, filepath) {
+  const ext = path.extname(filepath).toLowerCase();
+  const type = MIME[ext] || "application/octet-stream";
   try {
-    const data = fs.readFileSync(DATA_FILE, "utf8");
-    return JSON.parse(data);
-  } catch (err) {
-    console.error("Error reading todos.json:", err);
-    return [];
+    const data = fs.readFileSync(filepath);
+    res.writeHead(200, { "Content-Type": type, "Content-Length": data.length });
+    res.end(data);
+  } catch {
+    res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end("Not found");
   }
 }
 
-function saveTodos(todos) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(todos, null, 2));
-}
+const server = http.createServer((req, res) => {
+  const url = new URL(req.url, "http://" + req.headers.host);
+  let pathname = url.pathname;
 
-let todos = loadTodos();
+  if (pathname === "/") pathname = "/index.html";
+  if (!ALLOWED.has(pathname)) {
+    res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+    return res.end("Not found");
+  }
 
-// API routes
-app.get("/api/todos", (req, res) => res.json(todos));
-
-app.post("/api/todos", (req, res) => {
-  const { text } = req.body;
-  if (!text) return res.status(400).json({ error: "Todo text required" });
-  const newTodo = { id: Date.now(), text, done: false };
-  todos.push(newTodo);
-  saveTodos(todos);
-  res.status(201).json(newTodo);
+  const filepath = path.join(ROOT, pathname.slice(1)); // slice(1) drops leading slash
+  sendFile(res, filepath);
 });
 
-app.put("/api/todos/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  const todo = todos.find((t) => t.id === id);
-  if (!todo) return res.status(404).json({ error: "Todo not found" });
-  todo.done = !todo.done;
-  saveTodos(todos);
-  res.json(todo);
+server.listen(PORT, () => {
+  console.log("Server listening on http://localhost:" + PORT);
 });
-
-app.delete("/api/todos/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  todos = todos.filter((t) => t.id !== id);
-  saveTodos(todos);
-  res.json({ message: "Todo deleted" });
-});
-
-app.listen(PORT, () => console.log(`✅ Server running at http://localhost:${PORT}`));
