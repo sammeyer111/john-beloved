@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <title>Node Server + API</title>
+  </head>
+  <body>
+    <h1>Welcome to My Node Server!!!!!!!!!!!!!!!!!!!!!</h1>
+    <p>This page is being served by Express.</p>
+
+    <h2>Users from the API:</h2>
+    <ul id="user-list"></ul>
+
+    <script>
+      // Fetch JSON data from the API endpoint
+      fetch("/api/users")
+        .then((res) => res.json())
+        .then((users) => {
+          const list = document.getElementById("user-list");
+          users.forEach((user) => {
+            const li = document.createElement("li");
+            li.textContent = `${user.id}: ${user.name}`;
+            list.appendChild(li);
+          });
+        })
+        .catch((err) => console.error("Error fetching users:", err));
+    </script>
+  </body>
+</html>
