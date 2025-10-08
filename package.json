@@ -1,0 +1,16 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "john-beloved todo-list",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "playwright test",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.56.0"
+  }
+}
