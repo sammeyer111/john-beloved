@@ -1,4 +1,5 @@
 /*! tailwindcss v4.1.14 | MIT License | https://tailwindcss.com */
+@layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -6,6 +7,15 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-orange-200: oklch(90.1% 0.076 70.697);
+    --color-orange-700: oklch(55.3% 0.195 38.402);
+    --color-green-200: oklch(92.5% 0.084 155.995);
+    --color-green-700: oklch(52.7% 0.154 150.069);
+    --color-blue-200: oklch(88.2% 0.059 254.128);
+    --color-blue-700: oklch(48.8% 0.243 264.376);
+    --color-gray-400: oklch(70.7% 0.022 261.325);
+    --spacing: 0.25rem;
+    --radius-xl: 0.75rem;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -158,4 +168,66 @@
     display: none !important;
   }
 }
-@layer utilities;
+@layer utilities {
+  .m-4 {
+    margin: calc(var(--spacing) * 4);
+  }
+  .rounded-xl {
+    border-radius: var(--radius-xl);
+  }
+  .border-2 {
+    border-style: var(--tw-border-style);
+    border-width: 2px;
+  }
+  .border-blue-700 {
+    border-color: var(--color-blue-700);
+  }
+  .border-green-700 {
+    border-color: var(--color-green-700);
+  }
+  .border-orange-700 {
+    border-color: var(--color-orange-700);
+  }
+  .bg-blue-200\/50 {
+    background-color: color-mix(in srgb, oklch(88.2% 0.059 254.128) 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-blue-200) 50%, transparent);
+    }
+  }
+  .bg-gray-400\/880 {
+    background-color: color-mix(in srgb, oklch(70.7% 0.022 261.325) 880%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-gray-400) 880%, transparent);
+    }
+  }
+  .bg-green-200\/50 {
+    background-color: color-mix(in srgb, oklch(92.5% 0.084 155.995) 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-green-200) 50%, transparent);
+    }
+  }
+  .bg-orange-200\/50 {
+    background-color: color-mix(in srgb, oklch(90.1% 0.076 70.697) 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-orange-200) 50%, transparent);
+    }
+  }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
+  }
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
+  }
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-border-style: solid;
+    }
+  }
+}
