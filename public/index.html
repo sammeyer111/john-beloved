@@ -7,25 +7,10 @@
     <title>Node Server + API</title>
   </head>
   <body>
-    <h1>Welcome to My Node Server!!!!!!!!!!!!!!!!!!!!!</h1>
-    <p>This page is being served by Express.</p>
-
-    <h2>Users from the API:</h2>
-    <ul id="user-list"></ul>
-
-    <script>
-      // Fetch JSON data from the API endpoint
-      fetch("/api/users")
-        .then((res) => res.json())
-        .then((users) => {
-          const list = document.getElementById("user-list");
-          users.forEach((user) => {
-            const li = document.createElement("li");
-            li.textContent = `${user.id}: ${user.name}`;
-            list.appendChild(li);
-          });
-        })
-        .catch((err) => console.error("Error fetching users:", err));
-    </script>
+    <header class="border-2 border-orange-700 p-4 m-4 bg-orange-200/50"></header>
+    <nav class="border-2 border-blue-700 p-4 m-4 bg-blue-200/50"></nav>
+    <main class="border-2 border-green-700 p-4 m-4 bg-green-200/50"></main>
+    <h1>Bible Vision</h1>
+    <button id="loadBtn" class="p-2 border-2 rounded-xl m-4 bg-gray-400/80"></button>
   </body>
 </html>
