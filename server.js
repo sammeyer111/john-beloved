@@ -20,3 +20,20 @@ app.get(/.*/, (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
+
+// function apiRandomVerse(res, query){
+//   if (!fstat.existsSync(BIBLE_DIR)){
+//     return sendJson(res, 500, {
+//       ok: false,
+//       error: "world_english_bible directory not found",
+//       bibleDir: BIBLE_DIR
+//     });
+//   const files = listChapterFiles();
+//   if (!files.length){
+//     return sendJson(res, 500, {
+//       ok: false,
+//       error: "no chapter files found in world_english_bible",
+//     });
+//   }
+//   }
+// }

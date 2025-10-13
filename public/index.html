@@ -2,15 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <title>Node Server + API</title>
+    <title>BibleVision — John the Beloved</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="logic.js" defer></script>
   </head>
   <body>
-    <header class="border-2 border-orange-700 p-4 m-4 bg-orange-200/50"></header>
-    <nav class="border-2 border-blue-700 p-4 m-4 bg-blue-200/50"></nav>
-    <main class="border-2 border-green-700 p-4 m-4 bg-green-200/50"></main>
-    <h1>Bible Vision</h1>
-    <button id="loadBtn" class="p-2 border-2 rounded-xl m-4 bg-gray-400/80"></button>
+    <h1>John the Beloved</h1>
+
+    <button id="verseButton">Get Random Verse</button>
+
+    <div id="verseDisplay">
+      <h2 id="reference"></h2>
+      <p id="verseText"></p>
+    </div>
   </body>
 </html>
