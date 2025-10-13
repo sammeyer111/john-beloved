@@ -10,12 +10,51 @@
     <script src="/logic.js" defer></script>
   </head>
 
-  <body>
-    <header class="border-2 border-orange-700 p-4 m-4 bg-orange-200/50"></header>
-    <nav class="border-2 border-blue-700 p-4 m-4 bg-blue-200/50"></nav>
-    <main class="border-2 border-green-700 p-4 m-4 bg-green-200/50">
-      <h1>ToDo list for: John</h1>
-      <button id="loadBtn" class="p-2 border-2 rounded-xl m-4 bg-gray-400/880"
-    </main>
+  <body class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-lg bg-white shadow-lg rounded-3xl p-8 border border-gray-200">
+      <header class="mb-8 text-center">
+        <h1 class="text-3xl font-semibold text-gray-800 tracking-tight">To-Do List</h1>
+        <p class="text-gray-500 text-sm mt-1">Stay organized and focused</p>
+      </header>
+
+      <div class="flex mb-6 shadow-sm">
+        <input
+          id="taskInput"
+          type="text"
+          placeholder="Add a new task..."
+          class="flex-grow px-4 py-2 text-gray-800 bg-gray-100 rounded-l-xl border border-gray-300 focus:ring-2 focus:ring-indigo-300 focus:outline-none"
+        />
+        <button
+          id="addBtn"
+          class="px-5 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-r-xl font-medium transition"
+        >
+          Add
+        </button>
+      </div>
+
+      <div class="flex justify-between mb-3 text-sm text-gray-500">
+        <button
+          id="markAllBtn"
+          class="text-indigo-600 hover:text-indigo-800 font-medium transition"
+        >
+          Mark all complete
+        </button>
+        <button id="clearBtn" class="text-red-500 hover:text-red-700 font-medium transition">
+          Clear completed
+        </button>
+      </div>
+
+      <ul
+        id="taskList"
+        class="divide-y divide-gray-200 bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden"
+      ></ul>
+
+      <footer class="mt-6 flex justify-between text-sm text-gray-500">
+        <span id="taskCount">0 tasks</span>
+        <button id="clearAllBtn" class="text-red-500 hover:text-red-700 font-medium transition">
+          Delete all
+        </button>
+      </footer>
+    </div>
   </body>
 </html>
