@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>todo-list API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/api-logic.js" defer></script>
+  </head>
+  <body class="min-h-screen bg-gray-50 text-gray-900 flex flex-col">
+    <!-- Header on top -->
+    <header class="border-b bg-blue-200 flex-none">
+      <div class="px-4 py-3">
+        <h1 class="text-xl font-semibold">Todo List API Explorer</h1>
+        <p class="text-sm text-gray-600">All requests are GET and return JSON.</p>
+      </div>
+    </header>
+
+    <!-- Two columns beneath header -->
+    <div class="flex-1 flex overflow-hidden min-h-0">
+      <!-- Left column: fixed width; scrolls independently -->
+      <nav class="w-120 shrink-0 border-r bg-green-100 p-4 overflow-y-auto">
+        <!-- Quick calls -->
+        <section class="space-y-2">
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-600">Quick calls</h2>
+          <div class="grid grid-cols-2 gap-2">
+            <button id="btnHealth" class="px-3 py-2 rounded bg-blue-700 text-white cursor-pointer">
+              /api/health
+            </button>
+            <button id="btnStats" class="px-3 py-2 rounded bg-blue-700 text-white cursor-pointer">
+              /api/stats
+            </button>
+            <button id="btnListAll" class="px-3 py-2 rounded bg-blue-700 text-white cursor-pointer">
+              /api/list
+            </button>
+          </div>
+        </section>
+
+        <!-- Inputs -->
+        <section class="space-y-2 mt-4">
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-600">Inputs</h2>
+
+          <label for="idInp" class="text-sm text-gray-700">Item id</label>
+          <input
+            id="idInp"
+            type="number"
+            min="1"
+            step="1"
+            placeholder="123"
+            class="w-full rounded border border-gray-300 p-2 text-sm"
+          />
+
+          <label for="textInp" class="text-sm text-gray-700 mt-2">Text</label>
+          <input
+            id="textInp"
+            type="text"
+            placeholder="Buy milk"
+            class="w-full rounded border border-gray-300 p-2 text-sm"
+          />
+
+          <div class="flex items-center gap-2">
+            <input id="doneChk" type="checkbox" class="h-4 w-4" />
+            <label for="doneChk" class="text-sm text-gray-700">done=true</label>
+          </div>
+
+          <label for="qInp" class="text-sm text-gray-700 mt-2">Filter q</label>
+          <input
+            id="qInp"
+            type="text"
+            placeholder="milk"
+            class="w-full rounded border border-gray-300 p-2 text-sm"
+          />
+
+          <div class="grid grid-cols-3 gap-2 mt-2">
+            <button
+              id="btnListOpen"
+              class="px-3 py-2 rounded border border-blue-700 text-blue-700 bg-white"
+            >
+              /api/list?done=false
+            </button>
+            <button
+              id="btnListDone"
+              class="px-3 py-2 rounded border border-blue-700 text-blue-700 bg-white"
+            >
+              /api/list?done=true
+            </button>
+            <button
+              id="btnListQuery"
+              class="px-3 py-2 rounded border border-blue-700 text-blue-700 bg-white"
+            >
+              /api/list?q=...
+            </button>
+          </div>
+        </section>
+
+        <!-- Item actions -->
+        <section class="space-y-2 mt-6">
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-600">Item actions</h2>
+          <div class="grid grid-cols-2 gap-2">
+            <button
+              id="btnGet"
+              class="px-3 py-2 rounded border border-blue-700 text-blue-700 bg-white"
+            >
+              /api/item/get
+            </button>
+            <button
+              id="btnAdd"
+              class="px-3 py-2 rounded border border-blue-700 text-blue-700 bg-white"
+              title="Uses text + done"
+            >
+              /api/item/add
+            </button>
+            <button
+              id="btnUpdate"
+              class="px-3 py-2 rounded border border-blue-700 text-blue-700 bg-white"
+              title="Uses id + text and/or done"
+            >
+              /api/item/update
+            </button>
+            <button
+              id="btnToggle"
+              class="px-3 py-2 rounded border border-blue-700 text-blue-700 bg-white"
+              title="Uses id"
+            >
+              /api/item/toggle
+            </button>
+            <button
+              id="btnDelete"
+              class="px-3 py-2 rounded border border-red-700 text-red-700 bg-white"
+              title="Uses id"
+            >
+              /api/item/delete
+            </button>
+          </div>
+        </section>
+
+        <!-- Bulk -->
+        <section class="space-y-2 mt-6">
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-600">Bulk</h2>
+          <button
+            id="btnClearCompleted"
+            class="w-full px-3 py-2 rounded border border-blue-700 text-blue-700 bg-white"
+          >
+            /api/clear-completed
+          </button>
+        </section>
+      </nav>
+
+      <!-- Right column: fills remaining width; scrolls independently -->
+      <main class="flex-1 p-4 overflow-y-auto bg-purple-200 min-h-0">
+        <pre
+          id="out"
+          class="m-0 rounded border border-gray-300 bg-white p-3 font-mono text-sm whitespace-pre-wrap break-words"
+        >
+{ "hint": "Click a button to call the API. On load we fetch /api/health and /api/list." }</pre
+        >
+      </main>
+    </div>
+  </body>
+</html>
