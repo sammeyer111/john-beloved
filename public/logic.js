@@ -58,7 +58,7 @@
     return Number(el("chapterInp").value || 0);
   }
 
-    function currentBook2() {
+  function currentLoadBook() {
     return el("loadFromBook").value || "";
   }
   function currentChapter2() {
@@ -86,8 +86,8 @@
     show(resp);
   }
 
-  function loadVerse(){
-    var book = currentBook2();
+  function loadVerse() {
+    var book = currentLoadBook();
     var ch = currentChapter2();
     var params = {};
     if (book) params.book = book;
@@ -114,16 +114,16 @@
     el("btnRandom").addEventListener("click", randomVerse);
 
     function wire() {
-    el("btnVerse").addEventListener("click", loadVerse);
-    // TODO students:
-    // - Add buttons/inputs and hook them to:
-    //   - /api/chapter?book=CODE&chapter=N
-    //   - /api/chapter/verses?book=CODE&chapter=N
-    //   - /api/search?q=term&book=CODE&limit=25
-    //   - /api/range?book=CODE&from=A&to=B
-    //   - /api/files, /api/stats, /api/book/meta, /api/book/chapters
+      el("btnVerse").addEventListener("click", loadVerse);
+      // TODO students:
+      // - Add buttons/inputs and hook them to:
+      //   - /api/chapter?book=CODE&chapter=N
+      //   - /api/chapter/verses?book=CODE&chapter=N
+      //   - /api/search?q=term&book=CODE&limit=25
+      //   - /api/range?book=CODE&from=A&to=B
+      //   - /api/files, /api/stats, /api/book/meta, /api/book/chapters
+    }
   }
-
   // ---------- boot ----------
   function boot() {
     loadHealth(); // show something on first load
