@@ -1,19 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <title>BibleVision — John the Beloved</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="logic.js" defer></script>
+    <meta charset="utf-8" />
+    <title>Bible Vision</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/logic.js" defer></script>
   </head>
-  <body>
-    <h1>John the Beloved</h1>
 
-    <button id="verseButton">Get Random Verse</button>
+  <body class="min-h-screen bg-gray-50 text-gray-900 flex flex-col">
+    <!-- Header -->
+    <header class="flex-none border-b bg-white">
+      <div class="px-4 py-3">
+        <h1 class="text-xl font-semibold">Bible Vision</h1>
+        <p class="text-sm text-gray-600">Build your own UI using the JSON API.</p>
+      </div>
+    </header>
+  
+    <div class="flex-1 flex overflow-hidden min-h-0">
+      <!-- Left column: fixed width; scrolls independently -->
+      <nav class="w-80 shrink-0 border-r bg-green-100 p-4 overflow-y-auto">
 
-    <div id="verseDisplay">
-      <h2 id="reference"></h2>
-      <p id="verseText"></p>
+        <!-- Controls: students add UI here -->
+          <!-- Random Verse -->
+          <button
+            id="btnRandom"
+            class="w-full px-3 py-2 mb-3 rounded bg-green-600 hover:bg-green-700 text-white font-semibold shadow"
+          >
+            Random Verse
+          </button>
+
+          <!-- Book -->
+          <label for="bookSel" class="block text-sm text-gray-700 mt-2">Book</label>
+          <select
+            id="bookSel"
+            class="w-full rounded border border-gray-300 p-2 text-sm mb-2"
+          >
+            <option value="">(none)</option>
+          </select>
+
+          <!-- Chapter -->
+          <label for="chapterInp" class="block text-sm text-gray-700">Chapter</label>
+          <input
+            id="chapterInp"
+            type="number"
+            min="1"
+            step="1"
+            class="w-full rounded border border-gray-300 p-2 text-sm mb-2"
+          />
+
+
+                    <!-- Book -->
+          <label for="loadFromBook" class="block text-sm text-gray-700 mt-2">Load Verse from Book:</label>
+          <select
+            id="loadFromBook"
+            class="w-full rounded border border-gray-300 p-2 text-sm mb-2"
+          >
+            <option value="">(none)</option>
+          </select>
+
+          <!-- Verse -->
+          <label for="verseInp" class="block text-sm text-gray-700">Select Verse Number:</label>
+          <input
+            id="verseInp"
+            type="number"
+            min="1"
+            step="1"
+            class="w-full rounded border border-gray-300 p-2 text-sm mb-3"
+          />
+
+          <!-- Load Verse -->
+          <button
+            id="btnVerse"
+            class="w-full px-3 py-2 rounded bg-blue-700 hover:bg-blue-800 text-white font-semibold shadow"
+          >
+            Load Verse
+          </button>
+        </nav>
+          <!-- TODO: students add more controls here (search box, tabs, etc.) -->
+        </nav>
+
+        <!-- Viewer: pretty JSON output -->
+        <main class="overflow-y-auto min-h-0 p-4">
+          <pre
+            id="out"
+            class="m-0 rounded border border-gray-300 bg-white p-3 font-mono text-sm whitespace-pre-wrap break-words"
+          >
+            { "hint": "Build your UI on the left. Use logic.js to call /api endpoints and show results here." }
+          </pre>
+        </main>
+      </div>
     </div>
   </body>
 </html>
+
+
+
+
