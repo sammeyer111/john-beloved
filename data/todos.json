@@ -1,12 +1,12 @@
 {
-  "nextId": 4,
+  "nextId": 42,
   "items": [
     {
-      "id": 3,
-      "text": "Buy milk",
-      "done": true,
-      "createdAt": "2025-10-29T14:41:04.453Z",
-      "updatedAt": "2025-11-07T15:29:44.155Z"
+      "id": 41,
+      "text": "Test",
+      "done": false,
+      "createdAt": "2025-11-14T15:00:30.992Z",
+      "updatedAt": "2025-11-14T15:00:30.992Z"
     }
   ]
 }
