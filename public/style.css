@@ -9,16 +9,22 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-orange-700: oklch(55.3% 0.195 38.402);
+    --color-orange-00: oklch(46.38% 0.14611 38.076);
     --color-yellow-50: oklch(98.7% 0.026 102.212);
+    --color-gold-00: oklch(75.98% 0.15442 87.025);
+    --color-gold-10: oklch(49.653% 0.10109 88.225);
+    --color-gold-20: oklch(83.831% 0.15556 90.874);
     --color-green-100: oklch(96.2% 0.044 156.743);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-300: oklch(80.9% 0.105 251.813);
+    --color-blue-500: oklch(43.147% 0.14106 255.686);
     --color-blue-700: oklch(48.8% 0.243 264.376);
     --color-purple-200: oklch(90.2% 0.063 306.703);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-gray-600: oklch(44.6% 0.03 256.802);
     --color-gray-700: oklch(37.3% 0.034 259.733);
+    --color-gray-800: oklch(31% 0.034 261.733);
     --color-gray-900: oklch(21% 0.034 264.665);
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -335,8 +341,20 @@
   .bg-blue-700 {
     background-color: var(--color-blue-700);
   }
+  .bg-orange-00 {
+    background-color: var(--color-orange-00);
+  }
   .bg-gray-50 {
     background-color: var(--color-gray-50);
+  }
+  .bg-gray-700 {
+    background-color: var(--color-gray-700);
+  }
+  .bg-gray-800 {
+    background-color: var(--color-gray-800);
+  }
+  .bg-gray-900 {
+    background-color: var(--color-gray-900);
   }
   .bg-green-100 {
     background-color: var(--color-green-100);
@@ -400,6 +418,15 @@
   .text-blue-700 {
     color: var(--color-blue-700);
   }
+  .text-orange-00 {
+    color: var(--color-orange-00);
+  }
+  .text-gray-300 {
+    color: var(--color-gray-300);
+  }
+  .text-gray-50 {
+    color: var(--color-gray-50);
+  }
   .text-gray-600 {
     color: var(--color-gray-600);
   }
@@ -408,6 +435,12 @@
   }
   .text-gray-900 {
     color: var(--color-gray-900);
+  }
+  .text-gold-00 {
+    color: var(--color-gold-00);
+  }
+  .text-gold-20 {
+    color: var(--color-gold-20);
   }
   .text-white {
     color: var(--color-white);
@@ -418,19 +451,21 @@
 }
 input,
 select {
-  background-color: var(--color-yellow-50);
+  background-color: var(--color-orange-00);
+  border-color: var(--color-gold-00);
+  border-width: 2px;
 }
 button {
   cursor: pointer;
   border-radius: var(--radius-lg);
   border-style: var(--tw-border-style);
-  border-width: 1px;
-  border-color: var(--color-blue-700);
-  background-color: var(--color-blue-200);
-  color: var(--color-orange-700);
+  border-width: 4px;
+  border-color: var(--color-gold-10);
+  background-color: var(--color-blue-500);
+  color: var(--color-gold-00);
   &:hover {
     @media (hover: hover) {
-      background-color: var(--color-blue-300);
+      background-color: var(--color-blue-700);
     }
   }
 }

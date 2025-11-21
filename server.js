@@ -148,8 +148,9 @@ function parseChapterFile(filename) {
     return null;
   }
   const verses = content.split(/\r?\n/).slice(2);
+  const title = content.split(/\./).slice(0, 1);
 
-  return { book, chapter: Number(chapter), verses, sourceFile: filename };
+  return { book, chapter: Number(chapter), verses, sourceFile: filename, title };
 }
 
 function pickRandom(arr) {
@@ -361,6 +362,7 @@ function apiVerseRandom(res, q) {
   sendJSON(res, 200, {
     ok: true,
     book: parsed.book,
+    title: parsed.title,
     chapter: parsed.chapter,
     verse: index,
     text: verse,
@@ -540,6 +542,7 @@ function apiVerse(res, q) {
       ok: false,
       error: "verse not found in chapter",
       book: parsed.book,
+      title: parsed.title,
       chapter: parsed.chapter,
       requestedVerse: verse,
       maxVerse,
@@ -551,6 +554,7 @@ function apiVerse(res, q) {
   return sendJSON(res, 200, {
     ok: true,
     book: parsed.book,
+    title: parsed.title,
     chapter: parsed.chapter,
     verse,
     text,

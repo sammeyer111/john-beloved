@@ -61,8 +61,11 @@
   function currentLoadBook() {
     return el("loadFromBook").value || "";
   }
-  function currentChapter2() {
-    return Number(el("chapterInp").value || 0);
+  function currentLoadChapter() {
+    return Number(el("loadFromChapter").value || 0);
+  }
+  function currentLoadVerse() {
+    return Number(el("loadFromVerse").value || 0);
   }
 
   // ---------- example actions ----------
@@ -83,46 +86,50 @@
     if (book) params.book = book;
     if (ch) params.chapter = ch;
     var resp = xhrJSON("GET", "/api/verse/random" + toQuery(params));
-    show(resp);
+    show(resp.title + " " + resp.chapter + ":" + resp.verse + " — " + resp.text);
   }
 
   function loadVerse() {
     var book = currentLoadBook();
-    var ch = currentChapter2();
+    var ch = currentLoadChapter();
+    var v = currentLoadVerse();
     var params = {};
     if (book) params.book = book;
     if (ch) params.chapter = ch;
-    var resp = xhrJSON("GET", "/api/verse?book=GEN&chapter=1&verse=3" + toQuery(params));
-    show(resp);
+    if (v) params.verse = v;
+    var resp = xhrJSON("GET", "/api/verse" + toQuery(params));
+    show(resp.title + " " + resp.chapter + ":" + resp.verse + " — " + resp.text);
   }
 
   // ---------- populate selects ----------
   function populateBooks(items) {
-    var sel = el("bookSel");
-    sel.innerHTML = '<option value="">(none)</option>';
-    for (var i = 0; i < items.length; i++) {
-      var it = items[i];
-      var opt = document.createElement("option");
-      opt.value = it.book;
-      opt.textContent = it.book + " (" + it.chapters + ")";
-      sel.appendChild(opt);
+    function fill(id) {
+      var sel = el(id);
+      sel.innerHTML = '<option value="">(none)</option>';
+      if (!items || !items.length) return;
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        var opt = document.createElement("option");
+        opt.value = it.book;
+        opt.textContent = it.book + " (" + it.chapters + ")";
+        sel.appendChild(opt);
+      }
     }
+    fill("bookSel");
+    fill("loadFromBook");
   }
 
   // ---------- wire UI ----------
   function wire() {
     el("btnRandom").addEventListener("click", randomVerse);
-
-    function wire() {
-      el("btnVerse").addEventListener("click", loadVerse);
-      // TODO students:
-      // - Add buttons/inputs and hook them to:
-      //   - /api/chapter?book=CODE&chapter=N
-      //   - /api/chapter/verses?book=CODE&chapter=N
-      //   - /api/search?q=term&book=CODE&limit=25
-      //   - /api/range?book=CODE&from=A&to=B
-      //   - /api/files, /api/stats, /api/book/meta, /api/book/chapters
-    }
+    el("loadVerse").addEventListener("click", loadVerse);
+    // TODO students:
+    // - Add buttons/inputs and hook them to:
+    //   - /api/chapter?book=CODE&chapter=N
+    //   - /api/chapter/verses?book=CODE&chapter=N
+    //   - /api/search?q=term&book=CODE&limit=25
+    //   - /api/range?book=CODE&from=A&to=B
+    //   - /api/files, /api/stats, /api/book/meta, /api/book/chapters
   }
   // ---------- boot ----------
   function boot() {

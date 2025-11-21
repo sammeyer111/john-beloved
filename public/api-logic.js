@@ -176,11 +176,6 @@
     show(data);
   });
 
-  el("loadFromBook").addEventListener("click", function () {
-    var book = currentLoadFromBook();
-    // var
-  });
-
   el("btnVerse").addEventListener("click", function () {
     var book = currentBook();
     var ch = currentChapter();
